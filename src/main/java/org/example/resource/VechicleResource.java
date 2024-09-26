@@ -7,13 +7,14 @@ import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+import org.example.common.PageSupport;
 import org.example.dto.VechicleInformationDto;
 import org.example.service.VechicleService;
 
-import jakarta.enterprise.inject.Default;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
@@ -89,5 +90,18 @@ public class VechicleResource {
 		VechicleInformationDto vechicleInformationDtos = vechicleService.updateVechicleInfo(vechicleInformationDto);
 		return Response.status(Response.Status.OK).entity(vechicleInformationDtos).build();
 
+	}
+
+	@GET
+	@Path("/v1/page")
+	@Operation(summary = "get All the vechicle inforamtion", description = "get All the vechicle inforamtion")
+	@APIResponses(value = { @APIResponse(responseCode = "200", description = "SUCCESS"),
+			@APIResponse(responseCode = "400", description = "BAD REQUEST"),
+			@APIResponse(responseCode = "500", description = "INTERNAL SERVER ERROR") })
+	public Response getAllVechicleInfoByPagination(@QueryParam(value = "paze") @DefaultValue(PageSupport.FIRST_PAGE_NUM) int page,
+			@QueryParam(value = "size") @DefaultValue(PageSupport.DEFAULT_PAGE_SIZE) int size,
+			@QueryParam(value = "isPageSupport") @DefaultValue("true") Boolean isPageSupport) {
+		PageSupport<VechicleInformationDto> vechicleInformationDtos = vechicleService.getAllVechicleInfoByPagination(page,size,isPageSupport);
+		return Response.status(Response.Status.OK).entity(vechicleInformationDtos).build();
 	}
 }
