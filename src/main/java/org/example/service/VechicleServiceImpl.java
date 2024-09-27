@@ -3,9 +3,6 @@ package org.example.service;
 import java.util.Comparator;
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
-import org.example.VechicleInformation;
 import org.example.common.PageSupport;
 import org.example.dto.VechicleInformationDto;
 import org.example.entity.VechicleInfo;
