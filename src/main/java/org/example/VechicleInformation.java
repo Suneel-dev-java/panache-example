@@ -10,7 +10,7 @@ import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 
 @QuarkusMain
-@OpenAPIDefinition(info = @Info(title = "Vechicle Information  API", 
+@OpenAPIDefinition(info = @Info(title = "Quarkus Frame Work ", 
 version = "1.0.0", description = "This API allows CRUD operations for Vechicle Information.", 
 contact = @Contact(name = "Vechicle Information API Support", email = "support@vi.com"), 
 license = @License(name = "Apache 2.0", url = "https://www.apache.org/licenses/LICENSE-2.0.html")))
